@@ -1,0 +1,1 @@
+web: python manage.ginpy runserver 0.0.0.0:$PORT
