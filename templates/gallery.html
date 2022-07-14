@@ -101,7 +101,7 @@
                                 </div>
                             {% else %}
                                 <div class="card-body">
-                                    <small>{% trans 'Category' %}: {{ photo.category.name_ru }}</small>
+                                    <small>{% trans 'Category' %}: {{ photo.category.name_en }}</small>
                                 </div>
                             {% endif %}
                             <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">{% trans 'View' %}</a>
