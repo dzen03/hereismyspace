@@ -1,16 +1,11 @@
+{% load i18n %}
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home page</title>
-
-    <style>
-        body {
-            background-color: #7d7d7d;
-        }
-    </style>
+    <title>Gallery</title>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -21,24 +16,104 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
+
+    <style>
+        .image-thumbnail {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .list-group-item a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" href="{% url 'index' %}">Home</a>
-                    <a class="nav-link" href="{% url 'links' %}">Links</a>
-                    <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">Gallery</a>
-                </div>
+<body class=" bg-light text-dark fs-5">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'index' %}">{% trans 'Home' %}</a>
+{#                <a class="nav-link" href="{% url 'links' %}">{% trans 'Links' %}</a>#}
+                <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">{% trans 'Gallery' %}</a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row justify-content-start">
+        <div class="col-md-auto" style="min-width: 16%"> <!--TODO fix certain scale bug.-->
+            <div class="card my-2">
+                <div class="card-header">
+                    {% trans 'Categories' %}
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'gallery' %}">{% trans 'All' %}</a>
+                    </li>
+                    {% for category in categories %}
+                        <li class=" list-group-item">
+                            <a href="{% url 'gallery' %}?category={{ category.name_en }}">
+                                {% if 'ru' in language %}
+                                        {{ category.name_ru }}
+                                {% else %}
+                                        {{ category.name_en }}
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">{% trans 'Add photo' %}</a>
+                    {% endif %}
+                </ul>
+            </div>
+
+            </div>
+        <div class="col-md-10">
+            <div class="row">
+                {% for photo in photos %}
+                    <div class="col-md-4">
+                        <div class="card my-2">
+
+                            {% if photo.image_url|length > 1 %}
+                                <img class="image-thumbnail thumbnail img-fluid img-thumbnail"
+                                     src="{{ photo.image_url|first }}" alt=""
+                                     style="z-index: 1; position: relative;">
+                                <img class="image-thumbnail thumbnail img-fluid img-thumbnail"
+                                     src="{{ photo.image_url|last }}" alt=""
+                                     style="transform: rotate(3deg); position: absolute; top: 0; left: 0">
+                            {% else %}
+                                <img class="image-thumbnail thumbnail img-fluid img-thumbnail"
+                                     src="{{ photo.image_url|first }}" alt="">
+                            {% endif %}
+                            {% if 'ru' in language %}
+                                <div class="card-body">
+                                    <small>{% trans 'Category' %}: {{ photo.category.name_ru }}</small>
+                                </div>
+                            {% else %}
+                                <div class="card-body">
+                                    <small>{% trans 'Category' %}: {{ photo.category.name_ru }}</small>
+                                </div>
+                            {% endif %}
+                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">{% trans 'View' %}</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h3>{% trans 'No photos...' %}</h3>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

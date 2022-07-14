@@ -14,8 +14,12 @@ from pathlib import Path
 
 import dj_database_url
 
+SEPARATOR = '#'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,11 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'hereismy.space'
+    'hereismy.space',
+    'hereismyspace.herokuapp.com',
 ]
 
 
@@ -49,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -138,3 +143,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DATABASES['default'] = dj_database_url.config()
+
+
+import platform
+if platform.system() != 'Windows':
+    import django_heroku
+    django_heroku.settings(locals())

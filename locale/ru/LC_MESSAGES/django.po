@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-14 13:37+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\templates\gallery.html:43 .\templates\index.html:33
+#: .\templates\links.html:31
+msgid "Home"
+msgstr "Начало"
+
+#: .\templates\gallery.html:45 .\templates\index.html:35
+#: .\templates\links.html:33
+msgid "Gallery"
+msgstr "Галерея"
+
+#: .\templates\gallery.html:56
+msgid "Categories"
+msgstr "Категории"
+
+#: .\templates\gallery.html:60
+msgid "All"
+msgstr "Все"
+
+#: .\templates\gallery.html:75
+msgid "Add photo"
+msgstr "Добавить фото"
+
+#: .\templates\gallery.html:100 .\templates\gallery.html:104
+msgid "Category"
+msgstr "Категория"
+
+#: .\templates\gallery.html:107
+msgid "View"
+msgstr "Просмотреть"
+
+#: .\templates\gallery.html:111
+msgid "No photos..."
+msgstr "Нет фото..."
+
+#: .\templates\index.html:47
+msgid "My social media"
+msgstr "Мои соц. сети"
+
+#: .\templates\index.html:69
+msgid ""
+"Hello! My name is Ilya. I am photographer currently mostly shooting in St. "
+"Petersburg, Russia."
+msgstr "Привет! Я Илья, и я фотограф. Сейчас снимаю в основном в Санкт-Петербурге"
+
+#: .\templates\index.html:76
+msgid "My current gear"
+msgstr "Текущий парк техники"
+
+#: .\templates\index.html:82
+msgid ""
+"Camera: Nikon Z5<br>Lenses: Nikon Z 24-200mm, Nikon 80−200mm, Nikon 50mm"
+msgstr "Камера: Nikon Z5<br>Объективы: Nikon Z 24-200mm, Nikon 80−200mm, Nikon 50mm"
+
+#: .\templates\index.html:87
+msgid "Check my photos"
+msgstr "Смотреть мои фото"
+
+#: .\templates\links.html:32
+msgid "Links"
+msgstr "Ссылки"
+
+#: .\templates\photo.html:25
+msgid "Go Back"
+msgstr "Назад"
+
+#: .\templates\photo.html:79
+msgid "Camera"
+msgstr "Камера"
+
+#: .\templates\photo.html:82
+msgid "Aperture"
+msgstr "Диафрагма"
+
+#: .\templates\photo.html:85
+msgid "Shutter speed"
+msgstr "Выдержка"
+
+#: .\templates\photo.html:88
+msgid "Focal length"
+msgstr "Фокусное расстояние"
+
+#: .\templates\photo.html:88
+msgid "mm"
+msgstr "мм"
