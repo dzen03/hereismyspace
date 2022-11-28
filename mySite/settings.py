@@ -34,6 +34,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'hereismy.space',
     'hereismyspace.herokuapp.com',
+    'localhost',
 ]
 
 

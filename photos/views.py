@@ -63,5 +63,8 @@ def add(request):
 
 def photo(request, pk):
     photo = Photo.objects.get(id=pk)
-    photo.image_url = photo.image_url.split(SEPARATOR)
+    tmp = photo.image_url.split(SEPARATOR)
+    for i in range(len(tmp)):
+        tmp[i] = tmp[i].split('?')[0] + '?width=3000&height=2000&cropmode=none'
+    photo.image_url = tmp
     return render(request, 'photo.html', {'photo': photo, 'language': get_language()})
