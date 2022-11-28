@@ -1,4 +1,7 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
+
+import photos.models
 from photos.models import Photo, Category
 from django.conf import settings
 from django.utils.translation import get_language
@@ -15,14 +18,7 @@ def links(request):
 
 
 def gallery(request):
-
-    category = request.GET.get('category')
-    if category is None:
-        photos_preview = Photo.objects.order_by('-id')
-    else:
-        photos_preview = Photo.objects.filter(
-            category__name_en=category).order_by('-id')
-
+    photos_preview = Photo.objects.order_by('-id')
     categories = Category.objects.all()
 
     for ph in photos_preview:
@@ -30,8 +26,23 @@ def gallery(request):
         for i in range(len(tmp)):
             tmp[i] = tmp[i].split('?')[0] + '?width=750&height=750&cropmode=none'
         ph.image_url = tmp
-    return render(request, 'gallery.html', {'photos': photos_preview, 'categories': categories, 'language': get_language()})
+    return render(request, 'gallery.html', {'photos': photos_preview, 'categories': categories,
+                                            'language': get_language()})
 
+
+def gallery_filter(request, filter):
+
+    photos_preview = Photo.objects.filter(
+            category__name_en=filter).order_by('-id')
+    categories = Category.objects.all()
+
+    for ph in photos_preview:
+        tmp = ph.image_url.split(SEPARATOR)
+        for i in range(len(tmp)):
+            tmp[i] = tmp[i].split('?')[0] + '?width=750&height=750&cropmode=none'
+        ph.image_url = tmp
+    return render(request, 'gallery.html', {'photos': photos_preview, 'categories': categories,
+                                            'language': get_language()})
 
 def add(request):
     if not request.user.is_authenticated:
@@ -43,21 +54,68 @@ def add(request):
 
         if data['category'] != 'none':
             category = Category.objects.get(id=data['category'])
-        elif data['category_new'] != '':
-            category, created = Category.objects.get_or_create(name=data['category_new'])
+        elif data['category_new_en'] != '':
+            category, created = Category.objects.get_or_create(
+                name_en=data['category_new_en'],
+                name_ru=data['category_new_ru'],
+            )
         else:
             category = None
 
         photo = Photo.objects.create(
-                category=category,
-                description=data['description'],
-                image_url=images,
-            )
+            category=category,
+            description_en=data['description_en'],
+            description_ru=data['description_ru'],
+            camera_name=data['camera_name'],
+            shutter_speed=data['shutter_speed'],
+            focal_length=data['focal_length'],
+            aperture=data['aperture'],
+            image_url=images,
+        )
 
         return redirect('gallery')
     else:
         categories = Category.objects.all()
-        context = {'categories': categories, 'separator': SEPARATOR}
+        context = {'categories': categories, 'separator': SEPARATOR, 'language': get_language()}
+        return render(request, 'add.html', context)
+
+
+def edit(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('index')
+
+    if request.method == 'POST':
+        data = request.POST
+        images = data['images']
+
+        if data['category'] != 'none':
+            category = Category.objects.get(id=data['category'])
+        elif data['category_new_en'] != '':
+            category, created = Category.objects.get_or_create(
+                name_en=data['category_new_en'],
+                name_ru=data['category_new_ru'],
+            )
+        else:
+            category = None
+
+        Photo.objects.filter(id=pk).update(
+            category=category,
+            description_en=data['description_en'],
+            description_ru=data['description_ru'],
+            camera_name=data['camera_name'],
+            shutter_speed=data['shutter_speed'],
+            focal_length=data['focal_length'],
+            aperture=data['aperture'],
+            image_url=images,)
+
+        return redirect('gallery')
+    else:
+        categories = Category.objects.all()
+        try:
+            data = Photo.objects.get(id=pk)
+        except photos.models.Photo.DoesNotExist:
+            raise Http404("Post not found")
+        context = {'categories': categories, 'separator': SEPARATOR, 'language': get_language(), 'data': data}
         return render(request, 'add.html', context)
 
 

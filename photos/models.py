@@ -3,6 +3,9 @@ from django.contrib.postgres.fields import ArrayField
 
 
 # Create your models here.
+import photos.models
+
+
 class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
@@ -37,3 +40,8 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.description_en
+
+    def update(self, photo):
+
+        pass
+

@@ -1,6 +1,10 @@
 {% load i18n %}
 <!doctype html>
-<html lang="en">
+{% if 'ru' in language %}
+    <html lang="ru">
+{% else %}
+    <html lang="en">
+{% endif %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,14 +26,21 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <a href="{% url 'gallery' %}" class="btn btn-dark my-3">{% trans 'Go Back' %}</a>
+{#            <a href="{% url 'gallery' %}" class="btn btn-dark my-3">Go Back</a>#}
+            <button type="button" class="btn btn-dark my-3" onclick="window.history.go(-1)">{% trans 'Go Back' %}</button>
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'edit' photo.id %}" class="btn btn-dark my-3">{% trans 'Edit' %}</a>
+            {% endif %}
+        </div>
+        <div class="col">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-auto">
         {% if photo.image_url|length > 1 %}
-            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carousel" data-bs-slide-to="0"
                             class="active" aria-current="true" aria-label="Slide 1"></button>

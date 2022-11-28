@@ -1,7 +1,11 @@
 {% load static %}
 {% load i18n %}
 <!doctype html>
-<html lang="en">
+{% if 'ru' in language %}
+    <html lang="ru">
+{% else %}
+    <html lang="en">
+{% endif %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
