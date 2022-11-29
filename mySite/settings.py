@@ -30,7 +30,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'hereismy.space',
