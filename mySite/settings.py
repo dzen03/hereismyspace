@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import environ
-
-env = environ.Env()
+import config
 
 SEPARATOR = '#'
 
@@ -27,10 +25,10 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config.DEBUG
 
 ALLOWED_HOSTS = [
     'hereismy.space',
@@ -88,7 +86,7 @@ WSGI_APPLICATION = 'mySite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {"default": config.DATABASE_URL}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 
