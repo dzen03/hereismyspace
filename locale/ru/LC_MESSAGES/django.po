@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-18 01:15+0500\n"
+"POT-Creation-Date: 2023-02-18 15:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,151 +16,152 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\templates\add.html:60 .\templates\gallery.html:43
-#: .\templates\index.html:33 .\templates\links.html:31
+#: templates/add.html:64 templates/gallery_old.html:47 templates/header.html:12
+#: templates/header.html:14 templates/links.html:35
 msgid "Home"
 msgstr "Начало"
 
-#: .\templates\add.html:62 .\templates\gallery.html:45
-#: .\templates\index.html:35 .\templates\links.html:33
+#: templates/add.html:66 templates/gallery_old.html:49 templates/header.html:18
+#: templates/header.html:20 templates/links.html:37
 msgid "Gallery"
 msgstr "Галерея"
 
-#: .\templates\add.html:76 .\templates\photo.html:26
+#: templates/add.html:80 templates/photo.html:30
 msgid "Go Back"
 msgstr "Назад"
 
-#: .\templates\add.html:82
+#: templates/add.html:86
 msgid "Description"
 msgstr "Описание"
 
-#: .\templates\add.html:83
+#: templates/add.html:87
 msgid "Enter a description EN"
 msgstr "Введите описание на английском"
 
-#: .\templates\add.html:85
+#: templates/add.html:89
 msgid "Enter a description RU"
 msgstr "Введите описание на русском"
 
-#: .\templates\add.html:90 .\templates\add.html:92
+#: templates/add.html:94 templates/add.html:96
 msgid "Select a category"
 msgstr "Выбрать категорию"
 
-#: .\templates\add.html:114
+#: templates/add.html:118
 msgid "Create a new category"
 msgstr "Создать категорию"
 
-#: .\templates\add.html:115
+#: templates/add.html:119
 #, fuzzy
 #| msgid "Category"
 msgid "Category name EN"
 msgstr "Категория"
 
-#: .\templates\add.html:117
+#: templates/add.html:121
 #, fuzzy
 #| msgid "Category"
 msgid "Category name RU"
 msgstr "Категория"
 
-#: .\templates\add.html:122 .\templates\photo.html:86
+#: templates/add.html:126 templates/photo.html:90
 msgid "Camera"
 msgstr "Камера"
 
-#: .\templates\add.html:123
+#: templates/add.html:127
 #, fuzzy
 #| msgid "Camera"
 msgid "Camera name"
 msgstr "Камера"
 
-#: .\templates\add.html:128 .\templates\add.html:129 .\templates\photo.html:89
+#: templates/add.html:132 templates/add.html:133 templates/photo.html:93
 msgid "Aperture"
 msgstr "Диафрагма"
 
-#: .\templates\add.html:134 .\templates\add.html:135 .\templates\photo.html:92
+#: templates/add.html:138 templates/add.html:139 templates/photo.html:96
 msgid "Shutter speed"
 msgstr "Выдержка"
 
-#: .\templates\add.html:140 .\templates\add.html:141 .\templates\photo.html:95
+#: templates/add.html:144 templates/add.html:145 templates/photo.html:99
 msgid "Focal length"
 msgstr "Фокусное расстояние"
 
-#: .\templates\add.html:146
+#: templates/add.html:150
 msgid "Upload images"
 msgstr "Загрузить фото"
 
-#: .\templates\add.html:148
+#: templates/add.html:152
 msgid "Enter an images url. Use "
 msgstr "Введите ссылки на изображения, используя "
 
-#: .\templates\add.html:148
+#: templates/add.html:152
 msgid " as separator"
 msgstr " как разделитель"
 
-#: .\templates\add.html:151
+#: templates/add.html:155
 msgid "Submit"
 msgstr "Отправить"
 
-#: .\templates\gallery.html:56
+#: templates/gallery.html:51 templates/gallery_old.html:60
 msgid "Categories"
 msgstr "Категории"
 
-#: .\templates\gallery.html:60
+#: templates/gallery.html:55 templates/gallery_old.html:64
 msgid "All"
 msgstr "Все"
 
-#: .\templates\gallery.html:75
+#: templates/gallery.html:70 templates/gallery_old.html:79
 msgid "Add photo"
 msgstr "Добавить фото"
 
-#: .\templates\gallery.html:101 .\templates\gallery.html:105
-msgid "Category"
-msgstr "Категория"
-
-#: .\templates\gallery.html:113
-msgid "View"
-msgstr "Просмотреть"
-
-#: .\templates\gallery.html:117
+#: templates/gallery.html:95 templates/gallery_old.html:124
 msgid "No photos..."
 msgstr "Нет фото..."
 
-#: .\templates\index.html:47
+#: templates/gallery_old.html:108 templates/gallery_old.html:112
+msgid "Category"
+msgstr "Категория"
+
+#: templates/gallery_old.html:120
+msgid "View"
+msgstr "Просмотреть"
+
+#: templates/index.html:37
 msgid "My social media"
 msgstr "Мои соц. сети"
 
-#: .\templates\index.html:69
+#: templates/index.html:59
 msgid ""
 "Hello! My name is Ilya. I am photographer currently mostly shooting in St. "
 "Petersburg, Russia."
 msgstr ""
 "Привет! Я Илья, и я фотограф. Сейчас снимаю в основном в Санкт-Петербурге"
 
-#: .\templates\index.html:76
+#: templates/index.html:66
 msgid "My current gear"
 msgstr "Текущий парк техники"
 
-#: .\templates\index.html:82
+#: templates/index.html:72
 msgid ""
-"Camera: Nikon Z5<br>Lenses: Nikon Z 24-200mm, Nikon 80−200mm, Nikon 50mm"
+"Camera: Nikon Z5<br>Lenses: Tokina 24-70mm f2.8, Nikon 80−200mm f2.8, Nikon "
+"50mm f1.4"
 msgstr ""
-"Камера: Nikon Z5<br>Объективы: Nikon Z 24-200mm, Nikon 80−200mm, Nikon 50mm"
+"Камера: Nikon Z5<br>Объективы: Tokina 24-70мм f2.8, Nikon 80−200мм f2.8, Nikon 50мм f1.4"
 
-#: .\templates\index.html:87
+#: templates/index.html:77
 msgid "Check my photos"
 msgstr "Смотреть мои фото"
 
-#: .\templates\links.html:32
+#: templates/links.html:36
 msgid "Links"
 msgstr "Ссылки"
 
-#: .\templates\photo.html:29
+#: templates/photo.html:33
 msgid "Edit"
 msgstr "Изменить"
 
-#: .\templates\photo.html:95
+#: templates/photo.html:99
 msgid "mm"
 msgstr "мм"

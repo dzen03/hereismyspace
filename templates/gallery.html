@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load mathfilters %}
+
 <!doctype html>
 {% if 'ru' in language %}
     <html lang="ru">
@@ -21,6 +23,9 @@
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+
     <style>
         .image-thumbnail {
             height: 300px;
@@ -35,22 +40,8 @@
 </head>
 
 <body class=" bg-light text-dark fs-5">
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="{% url 'index' %}">{% trans 'Home' %}</a>
-{#                <a class="nav-link" href="{% url 'links' %}">{% trans 'Links' %}</a>#}
-                <a class="nav-link active" aria-current="page" href="{% url 'gallery' %}">{% trans 'Gallery' %}</a>
-            </div>
-        </div>
-    </div>
-</nav>
+
+{% include "header.html" with objects=path %}
 
 <div class="container-fluid">
     <div class="row justify-content-start">
@@ -61,11 +52,11 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <a href="{% url 'gallery' %}">{% trans 'All' %}</a>
+                        <a href="{% url 'gallery_new' %}">{% trans 'All' %}</a>
                     </li>
                     {% for category in categories %}
                         <li class=" list-group-item">
-                            <a href="{% url 'gallery' %}{{ category.name_en }}">
+                            <a href="{% url 'gallery_new' %}{{ category.name_en }}">
                                 {% if 'ru' in language %}
                                         {{ category.name_ru }}
                                 {% else %}
@@ -82,44 +73,24 @@
             </div>
 
             </div>
-        <div class="col-md-10">
-            <div class="row">
+        <div class="col-md my-2">
+            <div class="row" data-masonry='{"percentPosition": true }'>
                 {% for photo in photos %}
-                    <div class="col-md-4">
-                        <div class="card my-2">
-
-                            {% if photo.image_url|length > 1 %}
-                                <div style="position: relative" class="image-thumbnail">
-                                    <img class=" thumbnail img-fluid img-thumbnail"
-                                         src="{{ photo.image_url|first }}" alt=""
-                                         style="z-index: 1; width: 100%; height: 300px; object-fit: cover; position: absolute; top: 0; left: 0">
-                                    <img class="thumbnail img-fluid img-thumbnail"
-                                         src="{{ photo.image_url|last }}" alt=""
-                                         style="transform: rotate(4deg); width: 100%; height: 300px; object-fit: cover;">
-                                </div>
-
+                    {% for url in photo.image_url %}
+                    <div class="col-md-6 mx-0 my-1">
+                        <div style="position: relative" class="">
+                            {% if 'ru' in language %}
+                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_ru }}">
                             {% else %}
-                                <img class="image-thumbnail thumbnail img-fluid img-thumbnail"
-                                     src="{{ photo.image_url|first }}" alt="">
+                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_en }}">
                             {% endif %}
-                            {% if photo.category.name_ru is not None and photo.category.name_ru != '' or photo.category.name_en is not None and photo.category.name_en != '' %}
-                                {% if 'ru' in language %}
-                                    <div class="card-body">
-                                        <small>{% trans 'Category' %}: {{ photo.category.name_ru }}</small>
-                                    </div>
-                                {% else %}
-                                    <div class="card-body">
-                                        <small>{% trans 'Category' %}: {{ photo.category.name_en }}</small>
-                                    </div>
-                                {% endif %}
-                            {% else %}
-                                <div class="card-body">
-                                    <small>⁤</small> <!-- TODO fix this cringe with invisible ch. -->
-                                </div>
-                            {% endif %}
-                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">{% trans 'View' %}</a>
+                                <img class="img-fluid"
+                                     style="width: 100%; height: auto"
+                                     src="{{ url }}" alt="">
+                                </a>
                         </div>
                     </div>
+                        {% endfor %}
                 {% empty %}
                     <h3>{% trans 'No photos...' %}</h3>
                 {% endfor %}
