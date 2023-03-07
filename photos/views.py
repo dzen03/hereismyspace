@@ -52,9 +52,8 @@ def gallery_filter(request, filter):
         photos_preview = Photo.objects.order_by('-id')
     categories = Category.objects.all()
 
-    print(request.user_agent.is_pc)
     resolution = '?width=2000&height=2000&cropmode=none' if request.user_agent.is_pc \
-        else '?width=750&height=750&cropmode=none'
+        else '?width=750&height=750&cropmode=none'  # TODO add mobile version toggle
 
     for ph in photos_preview:
         tmp = ph.image_url.split(SEPARATOR)

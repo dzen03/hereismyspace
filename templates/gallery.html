@@ -8,10 +8,17 @@
     <html lang="en">
 {% endif %}
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gallery</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -23,8 +30,22 @@
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
             crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+    <script>
 
+        $(window).on('load', function()
+        {
+            $('#masonry').masonry({
+                    "percentPosition": true,
+                    isAnimated: true,
+                    animationOptions: {
+                        duration: 700,
+                        easing: 'linear',
+                        queue: false
+                    }
+                }
+            );
+        });
+    </script>
 
     <style>
         .image-thumbnail {
@@ -37,9 +58,13 @@
             color: black;
         }
     </style>
+
+
 </head>
 
 <body class=" bg-light text-dark fs-5">
+
+
 
 {% include "header.html" with objects=path %}
 
@@ -74,21 +99,19 @@
 
             </div>
         <div class="col-md my-2">
-            <div class="row" data-masonry='{"percentPosition": true }'>
+            <div class="row" id="masonry">
                 {% for photo in photos %}
                     {% for url in photo.image_url %}
-                    <div class="col-md-6 mx-0 my-1">
-                        <div style="position: relative" class="">
-                            {% if 'ru' in language %}
-                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_ru }}">
-                            {% else %}
-                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_en }}">
-                            {% endif %}
-                                <img class="img-fluid"
-                                     style="width: 100%; height: auto"
-                                     src="{{ url }}" alt="">
-                                </a>
-                        </div>
+                    <div class="col-md-6 my-1">
+                        {% if 'ru' in language %}
+                            <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_ru }}">
+                        {% else %}
+                            <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_en }}">
+                        {% endif %}
+                            <img class="img-fluid items"
+                                 style="width: 100%"
+                                 src="{{ url }}" alt=""/>
+                            </a>
                     </div>
                         {% endfor %}
                 {% empty %}
