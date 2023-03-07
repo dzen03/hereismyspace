@@ -14,7 +14,7 @@
                     <a class="nav-link" href="{% url 'index' %}">{% trans 'Home' %}</a>
                 {% endif %}
 {#                <a class="nav-link" href="{% url 'links' %}">{% trans 'Links' %}</a>#}
-                {% if path == 'gallery_new' %}
+                {% if path == 'gallery_new' or path == 'gallery_filter_new' %}
                     <a class="nav-link active" aria-current="page" href="{% url 'gallery_new' %}">{% trans 'Gallery' %}</a>
                 {% else %}
                     <a class="nav-link" aria-current="page" href="{% url 'gallery_new' %}">{% trans 'Gallery' %}</a>

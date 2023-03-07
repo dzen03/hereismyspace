@@ -10,6 +10,6 @@ urlpatterns = [
     path('photo/<str:pk>', views.photo, name='photo'),
     path('edit/<str:pk>', views.edit, name='edit'),
 
-    path('gallery/<str:pk>', views.gallery_filter, name='gallery_filter_new'),
+    path('gallery/<str:filter>', views.gallery_filter, name='gallery_filter_new'),
     path('gallery/', views.gallery, name='gallery_new'),
 ]
