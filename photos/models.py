@@ -27,8 +27,8 @@ class Photo(models.Model):
         verbose_name = 'Photo'
         verbose_name_plural = 'Photos'
 
-    category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True, blank=True)
+    category = models.ManyToManyField(
+        Category, blank=True)
     image_url = models.TextField(null=False, blank=False)
     description_en = models.TextField(null=False, blank=True)
     description_ru = models.TextField(null=False, blank=True)

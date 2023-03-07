@@ -5,20 +5,30 @@ import photos.models
 from photos.models import Photo, Category
 from django.conf import settings
 from django.utils.translation import get_language
+from django.urls import resolve
 
 SEPARATOR = settings.SEPARATOR
 
 
 def index(request):
-    return render(request, 'index.html')
+    current_url = resolve(request.path_info).url_name
+    return render(request, 'index.html', {'path': current_url})
 
 
 def links(request):
     return render(request, 'links.html')
 
 
-def gallery(request):
-    photos_preview = Photo.objects.order_by('-id')
+def gallery_old(request):
+    return gallery_filter_old(request, None)
+
+
+def gallery_filter_old(request, filter):
+    if filter is not None:
+        photos_preview = Photo.objects.filter(
+                category__name_en=filter).order_by('-id')
+    else:
+        photos_preview = Photo.objects.order_by('-id')
     categories = Category.objects.all()
 
     for ph in photos_preview:
@@ -26,23 +36,35 @@ def gallery(request):
         for i in range(len(tmp)):
             tmp[i] = tmp[i].split('?')[0] + '?width=750&height=750&cropmode=none'
         ph.image_url = tmp
-    return render(request, 'gallery.html', {'photos': photos_preview, 'categories': categories,
-                                            'language': get_language()})
+    return render(request, 'gallery_old.html', {'photos': photos_preview, 'categories': categories,
+                                                'language': get_language()})
+
+
+def gallery(request):
+    return gallery_filter(request, None)
 
 
 def gallery_filter(request, filter):
-
-    photos_preview = Photo.objects.filter(
-            category__name_en=filter).order_by('-id')
+    if filter is not None:
+        photos_preview = Photo.objects.filter(
+                category__name_en=filter).order_by('-id')
+    else:
+        photos_preview = Photo.objects.order_by('-id')
     categories = Category.objects.all()
+
+    resolution = '?width=2000&height=2000&cropmode=none' if request.user_agent.is_pc \
+        else '?width=750&height=750&cropmode=none'  # TODO add mobile version toggle
 
     for ph in photos_preview:
         tmp = ph.image_url.split(SEPARATOR)
         for i in range(len(tmp)):
-            tmp[i] = tmp[i].split('?')[0] + '?width=750&height=750&cropmode=none'
+            tmp[i] = tmp[i].split('?')[0] + resolution
         ph.image_url = tmp
+
+    current_url = resolve(request.path_info).url_name
     return render(request, 'gallery.html', {'photos': photos_preview, 'categories': categories,
-                                            'language': get_language()})
+                                            'language': get_language(), 'path': current_url})
+
 
 def add(request):
     if not request.user.is_authenticated:

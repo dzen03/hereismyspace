@@ -25,22 +25,8 @@
 </head>
 
 <body class=" bg-light text-dark fs-5">
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="{% url 'index' %}">{% trans 'Home' %}</a>
-                {#                    <a class="nav-link" href="{% url 'links' %}">{% trans 'Links' %}</a>#}
-                <a class="nav-link " aria-current="page" href="{% url 'gallery' %}">{% trans 'Gallery' %}</a>
-            </div>
-        </div>
-    </div>
-</nav>
+
+{% include "header.html" with objects=path %}
 
 
 <div class="container-fluid">
@@ -83,12 +69,12 @@
                     <div id="gear" class="accordion-collapse collapse" aria-labelledby="gear"
                          data-bs-parent="#accordion">
                         <div class="accordion-body">
-                            {% trans 'Camera: Nikon Z5<br>Lenses: Nikon Z 24-200mm, Nikon 80−200mm, Nikon 50mm' %}
+                            {% trans 'Camera: Nikon Z5<br>Lenses: Tokina 24-70mm f2.8, Nikon 80−200mm f2.8, Nikon 50mm f1.4' %}
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="btn btn-dark my-4" href="{% url 'gallery' %}">{% trans 'Check my photos' %}</a>
+            <a class="btn btn-dark my-4" href="{% url 'gallery_new' %}">{% trans 'Check my photos' %}</a>
             <!-- TODO prettify it -->
         </div>
     </div>
