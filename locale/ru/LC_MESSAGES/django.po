@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-18 15:32+0000\n"
+"POT-Creation-Date: 2023-03-07 10:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,19 +104,19 @@ msgstr " как разделитель"
 msgid "Submit"
 msgstr "Отправить"
 
-#: templates/gallery.html:51 templates/gallery_old.html:60
+#: templates/gallery.html:76 templates/gallery_old.html:60
 msgid "Categories"
 msgstr "Категории"
 
-#: templates/gallery.html:55 templates/gallery_old.html:64
+#: templates/gallery.html:80 templates/gallery_old.html:64
 msgid "All"
 msgstr "Все"
 
-#: templates/gallery.html:70 templates/gallery_old.html:79
+#: templates/gallery.html:95 templates/gallery_old.html:79
 msgid "Add photo"
 msgstr "Добавить фото"
 
-#: templates/gallery.html:95 templates/gallery_old.html:124
+#: templates/gallery.html:118 templates/gallery_old.html:124
 msgid "No photos..."
 msgstr "Нет фото..."
 
@@ -148,7 +148,8 @@ msgid ""
 "Camera: Nikon Z5<br>Lenses: Tokina 24-70mm f2.8, Nikon 80−200mm f2.8, Nikon "
 "50mm f1.4"
 msgstr ""
-"Камера: Nikon Z5<br>Объективы: Tokina 24-70мм f2.8, Nikon 80−200мм f2.8, Nikon 50мм f1.4"
+"Камера: Nikon Z5<br>Объективы: Tokina 24-70мм f2.8, Nikon 80−200мм f2.8, "
+"Nikon 50мм f1.4"
 
 #: templates/index.html:77
 msgid "Check my photos"
@@ -165,3 +166,6 @@ msgstr "Изменить"
 #: templates/photo.html:99
 msgid "mm"
 msgstr "мм"
+
+#~ msgid "Gallery by cards"
+#~ msgstr "Галерея карточками"
