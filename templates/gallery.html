@@ -48,11 +48,6 @@
     </script>
 
     <style>
-        .image-thumbnail {
-            height: 300px;
-            object-fit: cover;
-        }
-
         .list-group-item a {
             text-decoration: none;
             color: black;
@@ -102,16 +97,19 @@
             <div class="row" id="masonry">
                 {% for photo in photos %}
                     {% for url in photo.image_url %}
-                    <div class="col-md-6 my-1">
-                        {% if 'ru' in language %}
-                            <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_ru }}">
-                        {% else %}
-                            <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_en }}">
-                        {% endif %}
-                            <img class="img-fluid items"
-                                 style="width: 100%"
-                                 src="{{ url }}" alt=""/>
-                            </a>
+                    <div class="col-md-6 p-0">
+                        <div class="m-1">
+                            {% if 'ru' in language %}
+                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_ru }}">
+                            {% else %}
+                                <a href="{% url 'photo' photo.id %}" title="{{ photo.category.name_en }}">
+                            {% endif %}
+                                <img class="img-fluid items"
+                                     style="width: 100%"
+                                     src="{{ url }}" alt=""/>
+                                </a>
+                        </div>
+
                     </div>
                         {% endfor %}
                 {% empty %}
